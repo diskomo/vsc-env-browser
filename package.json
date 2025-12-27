@@ -1,0 +1,53 @@
+{
+  "name": "env-browser",
+  "displayName": "Env Browser",
+  "description": "Postman-like table view for .env files with grouping and auto-formatting",
+  "version": "0.0.1",
+  "publisher": "METAIIII",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "envBrowser.envEditor",
+        "displayName": "Env Browser",
+        "selector": [
+          {
+            "filenamePattern": ".env*"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "envBrowser.toggleView",
+        "title": "Env Browser: Toggle View",
+        "icon": "$(file-text)"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run bundle-webview && npm run copy-assets",
+    "bundle-webview": "esbuild src/webview/env-table.ts --bundle --format=esm --outfile=out/webview/env-table.js --target=es2022 --platform=browser",
+    "copy-assets": "node scripts/copy-assets.js",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "lint": "biome check .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.10",
+    "@types/node": "^25.0.3",
+    "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.27.2",
+    "typescript": "^5.9.3"
+  }
+}
