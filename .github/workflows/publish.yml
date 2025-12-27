@@ -27,13 +27,31 @@ jobs:
       - name: Package extension
         run: npm run package
 
+      - name: Find VSIX file
+        id: find-vsix
+        run: |
+          VSIX_FILE=$(ls *.vsix | head -n 1)
+          echo "vsixPath=$VSIX_FILE" >> $GITHUB_OUTPUT
+          echo "Found VSIX: $VSIX_FILE"
+
+      - name: Publish to Open VSX Registry
+        uses: HaaLeo/publish-vscode-extension@v2
+        id: publishToOpenVSX
+        with:
+          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          extensionFile: ${{ steps.find-vsix.outputs.vsixPath }}
+
       - name: Publish to VS Code Marketplace
-        run: npx @vscode/vsce publish -p ${{ secrets.VSCE_PAT }}
+        uses: HaaLeo/publish-vscode-extension@v2
+        with:
+          pat: ${{ secrets.VSCE_PAT }}
+          registryUrl: https://marketplace.visualstudio.com
+          extensionFile: ${{ steps.find-vsix.outputs.vsixPath }}
 
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v4
         with:
           name: extension-vsix
-          path: '*.vsix'
+          path: ${{ steps.find-vsix.outputs.vsixPath }}
           retention-days: 30
 
