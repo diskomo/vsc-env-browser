@@ -1,15 +1,14 @@
 # Env Browser
 
-A VSCode extension that provides a Postman-like table view for `.env` files.
+Provides a UI for managing `.env` files.
 
 ## Features
 
-- Table view for environment variables
-- Auto-formatting with quoted values on save
+- Table view for managing environment variables
+- Auto-formats with quoted values on save
 - One-click copy values
 - Drag-and-drop reordering
-- Add, edit, and delete variables
-- Supports `.env`, `.env.example`, `.env.development`, etc.
+- Supports `.env`, `.env.*`
 
 ## Development
 

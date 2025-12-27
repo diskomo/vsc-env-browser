@@ -1,15 +1,24 @@
 {
   "name": "env-browser",
   "displayName": "Env Browser",
-  "description": "Postman-like table view for .env files with grouping and auto-formatting",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "METAIIII",
-  "engines": {
-    "vscode": "^1.75.0"
+  "description": "Provides a UI for managing `.env` files.",
+  "author": {
+    "name": "METAIIII"
   },
   "categories": [
     "Other"
   ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#0F0F0F",
+    "theme": "dark"
+  },
+  "pricing": "Free",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "customEditors": [
@@ -49,5 +58,15 @@
     "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.2",
     "typescript": "^5.9.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/diskomo/vsc-env-browser/issues",
+    "email": "dev@metaiiii.online"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diskomo/vsc-env-browser.git"
+  },
+  "homepage": "https://github.com/diskomo/vsc-env-browser/blob/main/README.md",
+  "license": "MIT"
 }
